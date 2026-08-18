@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Idade</title>
+    <link rel="stylesheet" href="/static/menu.css">
+    <link rel="stylesheet" href="/static/validador.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('sobre') }}">Sobre mim</a></li>
+                <li><a href="{{ url_for('boletim') }}">Boletim</a></li>
+                <li><a href="{{ url_for('validador') }}" class="ativo">Validador</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="conteudo">
+
+        <section class="bloco">
+            <h2>Validador de idade</h2>
+            <p>
+                Digite seu nome, sobrenome e idade para descobrir se você já pode
+                votar e dirigir. Cada envio do formulário gera uma nova requisição
+                POST para o Flask, que processa os dados no servidor e devolve o
+                resultado &mdash; o mesmo modelo de requisição/resposta explicado na
+                apostila do laço <code>while</code>.
+            </p>
+        </section>
+
+        <section class="bloco">
+            <form method="POST" action="{{ url_for('validador') }}">
+                <div class="campo">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="campo">
+                    <label for="sobrenome">Sobrenome</label>
+                    <input type="text" id="sobrenome" name="sobrenome" required>
+                </div>
+                <div class="campo">
+                    <label for="idade">Idade</label>
+                    <input type="number" id="idade" name="idade" min="0" max="130" required>
+                </div>
+                <button type="submit">Validar</button>
+            </form>
+        </section>
+
+        {% if resultado %}
+            {% if resultado.erro %}
+                <section class="bloco">
+                    <p class="erro">{{ resultado.erro }}</p>
+                </section>
+            {% else %}
+                <section class="bloco">
+                    <h2>Resultado para {{ resultado.nome }} {{ resultado.sobrenome }} ({{ resultado.idade }} anos)</h2>
+
+                    {% for checagem in resultado.checagens %}
+                        <div class="regra">
+                            <span>{{ checagem.titulo }}</span>
+                            {% if checagem.pode %}
+                                <span class="selo sim">Pode</span>
+                            {% else %}
+                                <span class="selo nao">Ainda não</span>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </section>
+            {% endif %}
+        {% endif %}
+
+        {% if historico %}
+            <section class="bloco">
+                <h2>Histórico de validações</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Vota</th>
+                            <th>Dirige</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in historico %}
+                            <tr>
+                                <td>{{ item.nome }} {{ item.sobrenome }}</td>
+                                <td>{{ item.idade }}</td>
+                                <td>{{ "Sim" if item.pode_votar else "Não" }}</td>
+                                <td>{{ "Sim" if item.pode_dirigir else "Não" }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        {% endif %}
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 — Feito com Flask</p>
+    </footer>
+
+</body>
+</html>

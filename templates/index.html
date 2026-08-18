@@ -1,5 +1,25 @@
-{% extends "layout.html" %}
-
-{% block main %}
-<h1>Home</h1>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/menu.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}" class="ativo">Home</a></li>
+                <li><a href="{{ url_for('sobre') }}">Sobre mim</a></li>
+                <li><a href="{{ url_for('boletim') }}">Boletim</a></li>
+                <li><a href="{{ url_for('validador') }}">Validador</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Home</h1>
+        <p>Bem-vindo! Use o menu para conhecer mais sobre mim ou testar o validador de idade.</p>
+    </main>
+</body>
+</html>

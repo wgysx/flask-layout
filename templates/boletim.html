@@ -1,5 +1,24 @@
-{% extends "layout.html" %}
-
-{% block main %}
-<h1>Boletim</h1>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boletim</title>
+    <link rel="stylesheet" href="/static/menu.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('sobre') }}">Sobre mim</a></li>
+                <li><a href="{{ url_for('boletim') }}" class="ativo">Boletim</a></li>
+                <li><a href="{{ url_for('validador') }}">Validador</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Página do Boletim</h1>
+    </main>
+</body>
+</html>

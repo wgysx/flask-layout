@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre mim</title>
+    <link rel="stylesheet" href="/static/sobre.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Início</a></li>
+                <li><a href="{{ url_for('sobre') }}" class="ativo">Sobre mim</a></li>
+                <li><a href="{{ url_for('boletim') }}">Boletim</a></li>
+                <li><a href="{{ url_for('validador') }}">Validador</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <header class="hero">
+        <img src="https://photos.fife.usercontent.google.com/pw/AP1GczMU6H7O_Rtlm9SsX2ZKbOvpQsYsw1jvTTjgbGNsA2XK1XZK0gu5toTW=w395-h702-s-no-gm?authuser=1" alt="Foto de perfil" class="foto-perfil">
+        <div class="hero-texto">
+            <h1>Pedro Musto</h1>
+            <p class="subtitulo">Desenvolvedor(a) • Estudante • Criador(a)</p>
+        </div>
+    </header>
+
+    <main class="conteudo">
+
+        <section class="bloco">
+            <h2>Quem sou eu</h2>
+            <p>
+                Escreva aqui um parágrafo contando sua trajetória: onde estuda, o que
+                te motivou a entrar na área de tecnologia, seus interesses e o que
+                busca profissionalmente. Fale também de hobbies ou projetos pessoais
+                que ajudem a te representar.
+            </p>
+        </section>
+
+        <section class="bloco">
+            <h2>Minhas habilidades</h2>
+            <ul class="habilidades">
+                <li>Python / Flask</li>
+                <li>HTML / CSS / JavaScript</li>
+                <li>Git &amp; GitHub</li>
+                <li>Banco de dados</li>
+            </ul>
+        </section>
+
+        <section class="bloco">
+            <h2>Galeria</h2>
+            <div class="galeria">
+                <img src="{{ url_for('static', filename='img/foto1.jpg') }}" alt="Foto 1">
+                <img src="{{ url_for('static', filename='img/foto2.jpg') }}" alt="Foto 2">
+                <img src="{{ url_for('static', filename='img/foto3.jpg') }}" alt="Foto 3">
+            </div>
+        </section>
+
+        <section class="bloco">
+            <h2>Vídeo de apresentação</h2>
+            <video controls class="video-apresentacao">
+                <source src="{{ url_for('static', filename='video/apresentacao.mp4') }}" type="video/mp4">
+                Seu navegador não suporta vídeo.
+            </video>
+        </section>
+
+        <section class="bloco contato">
+            <h2>Contato</h2>
+            <p>
+                <a href="mailto:pedrorodrigues@colegiopaulodetarso.com.br">Email</a> ·
+                <a href="https://github.com/wgysx" target="_blank" rel="noopener">GitHub</a> ·
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 — Feito com Flask</p>
+    </footer>
+
+</body>
+</html>
